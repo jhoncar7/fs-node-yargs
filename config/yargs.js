@@ -1,0 +1,29 @@
+const argv = require('yargs')
+    .option('b', {
+        alias: 'base',
+        type: 'number',
+        demandOption: true,
+        describe: 'Es la base de la tabla de multiplicar'
+    })
+    .option('h', {
+        alias: 'hasta',
+        type: 'number',
+        default: 10,
+        describe: 'Este es el numero hasta donde quieres la tabla'
+    })
+    .option('l', {
+        alias: 'listar',
+        type: 'boolean',
+        demandOption: true,
+        default: false,
+        describe: 'Muestra la tabla en la consola'
+    })
+    .check((arg, options) => {
+        if (isNaN(arg.b)) {
+            throw new Error('La base debe ser un numero');
+        }
+        return true;
+    })
+    .argv;
+
+module.exports = argv;
